@@ -1,7 +1,6 @@
 package tcc.kanbro.model;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,8 +10,13 @@ import javax.persistence.Id;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Quadros {
+@Getter
+@Setter
+@EqualsAndHashCode
+@Builder
+public class Estado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idQuadro;
+    private Long idEstado;
+    private String estado;
 }

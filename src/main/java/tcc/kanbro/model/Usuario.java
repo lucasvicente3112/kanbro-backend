@@ -4,16 +4,22 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity(name = "chat")
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode
-public class Chat {
-
+@Builder
+public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idChat;
+    private Long idUsuario;
 
+    @ManyToOne
+    private Time time;
+
+    private String nome;
+    private String email;
+    private String senha;
 }

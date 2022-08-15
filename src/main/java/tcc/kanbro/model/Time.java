@@ -1,19 +1,27 @@
 package tcc.kanbro.model;
 
 import lombok.*;
+import java.util.List;
 
 import javax.persistence.*;
 
-@Entity(name = "chat")
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode
-public class Chat {
-
+@Builder
+public class Time {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idChat;
+    private Long idTime;
 
+    private String nome;
+
+    @OneToMany
+    private List<Usuario> usuarios;
+
+    @OneToOne
+    private Quadro quadro;
 }
