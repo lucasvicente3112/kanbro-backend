@@ -1,8 +1,12 @@
 package tcc.kanbro.mapper;
 
+import org.springframework.stereotype.Component;
 import tcc.kanbro.dto.TarefaDto;
 import tcc.kanbro.model.Tarefa;
 
+import java.util.List;
+import java.util.stream.Collectors;
+@Component
 public class TarefaMapper {
 
     public TarefaDto paraDto(Tarefa tarefa){
@@ -19,5 +23,8 @@ public class TarefaMapper {
                 .responsavel(tarefaDto.getResponsavel())
                 .quadro(tarefaDto.getQuadro())
                 .build();
+    }
+    public List<TarefaDto> paraListaDe(List<Tarefa> tarefaList){
+        return tarefaList.stream().map(this::paraDto).collect(Collectors.toList());
     }
 }

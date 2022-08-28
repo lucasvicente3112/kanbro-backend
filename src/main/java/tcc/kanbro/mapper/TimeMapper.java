@@ -1,8 +1,12 @@
 package tcc.kanbro.mapper;
 
+import org.springframework.stereotype.Component;
 import tcc.kanbro.dto.TimeDto;
 import tcc.kanbro.model.Time;
 
+import java.util.List;
+import java.util.stream.Collectors;
+@Component
 public class TimeMapper {
     public TimeDto paraDto(Time time){
         return TimeDto.builder()
@@ -18,5 +22,8 @@ public class TimeMapper {
                 .usuarios(timeDto.getUsuarios())
                 .quadro(timeDto.getQuadro())
                 .build();
+    }
+    public List<TimeDto> paraListaDeTime(List<Time> timeList){
+        return timeList.stream().map(this::paraDto).collect(Collectors.toList());
     }
 }
