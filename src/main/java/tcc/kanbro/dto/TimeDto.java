@@ -1,9 +1,6 @@
 package tcc.kanbro.dto;
 
 import lombok.*;
-import tcc.kanbro.model.Quadro;
-import tcc.kanbro.model.Usuario;
-
 import java.util.List;
 
 @NoArgsConstructor
@@ -15,6 +12,6 @@ import java.util.List;
 public class TimeDto {
 
     private String nome;
-    private List<Usuario> usuarios;
-    private Quadro quadro;
+    private List<UsuarioDto> usuarios;
+
 }

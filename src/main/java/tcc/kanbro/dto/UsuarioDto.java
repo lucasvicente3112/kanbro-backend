@@ -1,7 +1,6 @@
 package tcc.kanbro.dto;
 
 import lombok.*;
-import tcc.kanbro.model.Time;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -10,8 +9,6 @@ import tcc.kanbro.model.Time;
 @EqualsAndHashCode
 @Builder
 public class UsuarioDto {
-
-    private Time time;
 
     private String email;
     private String nome;

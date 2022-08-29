@@ -3,9 +3,14 @@ package tcc.kanbro.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tcc.kanbro.dto.TimeDto;
+import tcc.kanbro.dto.UsuarioDto;
 import tcc.kanbro.mapper.TimeMapper;
+import tcc.kanbro.model.Time;
+import tcc.kanbro.model.Usuario;
 import tcc.kanbro.repository.TimeRepository;
+import tcc.kanbro.repository.UsuarioRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -13,16 +18,25 @@ public class TimeService {
 
     @Autowired
     private TimeRepository timeRepository;
-
+    @Autowired
+    private UsuarioRepository usuarioRepository;
     @Autowired
     private TimeMapper timeMapper;
 
-    public List<TimeDto> listarTimes(){
+    public List<TimeDto> listarTimes() {
         return timeMapper.paraListaDeTime(timeRepository.findAll());
     }
 
-    public TimeDto cadastrar(TimeDto timeDto){
-        timeRepository.save(timeMapper.dtoParaTimes(timeDto));
+    public TimeDto cadastrar(TimeDto timeDto) {
+        List<Usuario> usuarioList = new ArrayList<>();
+        usuarioList.add(usuarioRepository.findAByNome(timeDto.getUsuarios().get(0).getNome()));
+
+        Time time = Time.builder()
+                .nome(timeDto.getNome())
+                .usuarios(usuarioList)
+                .build();
+
+        timeRepository.save(time);
         return timeDto;
     }
 }

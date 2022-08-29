@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 public class UsuarioMapper {
     public UsuarioDto paraDto(Usuario usuario) {
         return UsuarioDto.builder()
-                        .time(usuario.getTime())
                         .nome(usuario.getNome())
                         .email(usuario.getEmail())
                         .senha(usuario.getSenha())
@@ -20,7 +19,6 @@ public class UsuarioMapper {
 
     public Usuario dtoParaUsuario(UsuarioDto usuarioDto) {
         return Usuario.builder()
-                .time(usuarioDto.getTime())
                 .nome(usuarioDto.getNome())
                 .email(usuarioDto.getEmail())
                 .senha(usuarioDto.getSenha())
@@ -29,5 +27,8 @@ public class UsuarioMapper {
 
     public List<UsuarioDto> paraListaDeUsuariosDto(List<Usuario> usuarios){
         return usuarios.stream().map(this::paraDto).collect(Collectors.toList());
+    }
+    public List<Usuario> paraListaDeUsuarios(List<UsuarioDto> usuarioDtos){
+        return usuarioDtos.stream().map(this::dtoParaUsuario).collect(Collectors.toList());
     }
 }
