@@ -24,4 +24,15 @@ public class EstadoService {
         estadoRepository.save(estadoMapper.dtoParaEstado(estadoDto));
         return estadoDto;
     }
+
+    public void inicializarEstados(Long quadroId){
+        List<String> estadosIniciais = List.of("ToDo", "Doing", "Done");
+
+        for (String estado : estadosIniciais) {
+            cadastrar(EstadoDto.builder()
+                    .estado(estado)
+                    .QuadroId(quadroId)
+                    .build());
+        }
+    }
 }

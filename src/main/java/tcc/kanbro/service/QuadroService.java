@@ -5,8 +5,6 @@ import org.springframework.stereotype.Service;
 import tcc.kanbro.dto.QuadroDto;
 import tcc.kanbro.mapper.QuadroMapper;
 import tcc.kanbro.model.Quadro;
-import tcc.kanbro.model.Time;
-import tcc.kanbro.model.Usuario;
 import tcc.kanbro.repository.QuadroRepository;
 import tcc.kanbro.repository.TimeRepository;
 
@@ -21,18 +19,21 @@ public class QuadroService {
     private TimeRepository timeRepository;
     @Autowired
     private QuadroMapper quadroMapper;
+    @Autowired
+    private EstadoService estadoService;
 
-    public List<QuadroDto> ListarQuadros(){
+    public List<QuadroDto> ListarQuadros() {
         return quadroMapper.paraListaDeQuadroDto(quadroRepository.findAll());
     }
 
-    public QuadroDto cadastrar(QuadroDto quadroDto){
+    public QuadroDto cadastrar(QuadroDto quadroDto) {
 
         Quadro quadro = Quadro.builder()
                 .time(timeRepository.findAByNome(quadroDto.getTime().getNome()))
                 .build();
 
-        quadroRepository.save(quadro);
+        Quadro quadroSalvo = quadroRepository.save(quadro);
+        estadoService.inicializarEstados(quadroSalvo.getIdQuadro());
         return quadroDto;
     }
 }

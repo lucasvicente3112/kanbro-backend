@@ -13,12 +13,14 @@ public class EstadoMapper {
     public EstadoDto paraDto(Estado estado){
         return EstadoDto.builder()
                 .estado(estado.getEstado())
+                .QuadroId(estado.getIdEstado())
                 .build();
     }
 
     public Estado dtoParaEstado(EstadoDto estadoDto){
         return Estado.builder()
                 .estado(estadoDto.getEstado())
+                .QuadroId(estadoDto.getQuadroId())
                 .build();
     }
     public List<EstadoDto> paraListaDeEstadosDto(List<Estado> estados){

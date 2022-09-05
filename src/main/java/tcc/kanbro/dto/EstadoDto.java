@@ -10,4 +10,5 @@ import lombok.*;
 @Builder
 public class EstadoDto {
     private String estado;
+    private Long QuadroId;
 }

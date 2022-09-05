@@ -19,4 +19,5 @@ public class Estado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEstado;
     private String estado;
+    private Long QuadroId;
 }
