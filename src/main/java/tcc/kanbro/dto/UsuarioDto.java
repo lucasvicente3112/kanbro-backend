@@ -1,5 +1,6 @@
 package tcc.kanbro.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 @NoArgsConstructor
@@ -12,5 +13,7 @@ public class UsuarioDto {
 
     private String email;
     private String nome;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String senha;
 }
