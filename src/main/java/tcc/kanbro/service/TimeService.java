@@ -12,6 +12,7 @@ import tcc.kanbro.repository.UsuarioRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TimeService {
@@ -29,7 +30,8 @@ public class TimeService {
 
     public TimeDto cadastrar(TimeDto timeDto) {
         List<Usuario> usuarioList = new ArrayList<>();
-        usuarioList.add(usuarioRepository.findAByNome(timeDto.getUsuarios().get(0).getNome()));
+        Optional<Usuario> usuarioResgatado = usuarioRepository.findByEmail(timeDto.getUsuarios().get(0).getEmail());
+        usuarioList.add(usuarioRepository.findAByNome(usuarioResgatado.get().getNome()));
 
         Time time = Time.builder()
                 .nome(timeDto.getNome())

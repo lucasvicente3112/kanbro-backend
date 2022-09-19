@@ -29,11 +29,13 @@ public class SecurityConfig {
         httpSecurity.httpBasic()
                 .and()
                 .authorizeHttpRequests()
-                .antMatchers("/usuarios/cadastrar", "/usuarios/cadastrar/**").permitAll()
-                .antMatchers("/usuarios/login", "/usuarios/login/**").permitAll()
+                .antMatchers("/usuario/cadastrar", "/usuario/cadastrar/**").permitAll()
+                .antMatchers("/time/cadastrar", "/time/cadastrar/**").permitAll()
+                .antMatchers("/usuario/login", "/usuario/login/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().disable();
+        httpSecurity.cors().disable();
         httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         httpSecurity.headers().frameOptions().disable();
         httpSecurity.exceptionHandling()

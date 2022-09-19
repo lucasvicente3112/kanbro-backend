@@ -1,17 +1,14 @@
 package tcc.kanbro.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tcc.kanbro.dto.EstadoDto;
-import tcc.kanbro.dto.TimeDto;
 import tcc.kanbro.service.EstadoService;
 
 @RestController
-@RequestMapping(value = "/estados")
-public class EstadosController {
+@CrossOrigin
+@RequestMapping(value = "/estado")
+public class EstadoController {
 
     @Autowired
     private EstadoService estadoService;

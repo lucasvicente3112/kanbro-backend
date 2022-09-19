@@ -8,8 +8,9 @@ import tcc.kanbro.service.TimeService;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/times")
-public class TimesController {
+@CrossOrigin
+@RequestMapping(value = "/time")
+public class TimeController {
 
     @Autowired
     private TimeService timeService;
