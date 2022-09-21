@@ -2,8 +2,8 @@ package tcc.kanbro.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tcc.kanbro.dto.TimeDto;
-import tcc.kanbro.dto.UsuarioDto;
 import tcc.kanbro.mapper.TimeMapper;
 import tcc.kanbro.model.Time;
 import tcc.kanbro.model.Usuario;
@@ -27,18 +27,18 @@ public class TimeService {
     public List<TimeDto> listarTimes() {
         return timeMapper.paraListaDeTime(timeRepository.findAll());
     }
-
+    @Transactional
     public TimeDto cadastrar(TimeDto timeDto) {
         List<Usuario> usuarioList = new ArrayList<>();
         Optional<Usuario> usuarioResgatado = usuarioRepository.findByEmail(timeDto.getUsuarios().get(0).getEmail());
         usuarioList.add(usuarioRepository.findAByNome(usuarioResgatado.get().getNome()));
 
-        Time time = Time.builder()
-                .nome(timeDto.getNome())
-                .usuarios(usuarioList)
-                .build();
+        Time timeNovo = timeRepository.save(Time.builder()
+                                            .nome(timeDto.getNome())
+                                            .usuarios(usuarioList)
+                                            .build());
 
-        timeRepository.save(time);
+        usuarioRepository.atualizaTimeDoUsuario(usuarioResgatado.get().getIdUsuario(), timeNovo);
         return timeDto;
     }
 }

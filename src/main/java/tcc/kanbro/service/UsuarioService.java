@@ -16,6 +16,7 @@ import tcc.kanbro.repository.UsuarioRepository;
 import tcc.kanbro.security.JwtTokenUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -34,6 +35,10 @@ public class UsuarioService {
 
     public List<UsuarioDto> listarUsuarios() {
         return usuarioMapper.paraListaDeUsuariosDto(usuarioRepository.findAll());
+    }
+
+    public Optional<UsuarioDto> recuperaTime(String email) {
+       return usuarioMapper.paraDtoOptional(usuarioRepository.findByEmail(email));
     }
 
     public UsuarioDto cadastrar(UsuarioDto usuarioDto) {
