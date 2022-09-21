@@ -23,9 +23,10 @@ public class UsuarioController {
     }
 
     @GetMapping(path = "/email/{email}/time")
-    public Optional<UsuarioDto> retornaTime(@PathVariable String email){
+    public UsuarioDto retornaTime(@PathVariable String email){
         return usuarioService.recuperaTime(email);
     }
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody UsuarioDto usuarioDto) {
         return usuarioService.login(usuarioDto);
