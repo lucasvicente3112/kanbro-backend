@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tcc.kanbro.dto.UsuarioDto;
-import tcc.kanbro.model.Usuario;
 import tcc.kanbro.service.UsuarioService;
 
 import java.util.Optional;
