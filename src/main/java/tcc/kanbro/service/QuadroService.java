@@ -26,14 +26,14 @@ public class QuadroService {
         return quadroMapper.paraListaDeQuadroDto(quadroRepository.findAll());
     }
 
-    public QuadroDto cadastrar(QuadroDto quadroDto) {
+    public Long cadastrar(QuadroDto quadroDto) {
 
         Quadro quadro = Quadro.builder()
-                .time(timeRepository.findAByNome(quadroDto.getTime().getNome()))
+                .time(timeRepository.findByIdTime(quadroDto.getTime()))
                 .build();
 
         Quadro quadroSalvo = quadroRepository.save(quadro);
         estadoService.inicializarEstados(quadroSalvo.getIdQuadro());
-        return quadroDto;
+        return quadroSalvo.getIdQuadro();
     }
 }

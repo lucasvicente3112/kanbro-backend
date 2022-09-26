@@ -16,7 +16,7 @@ public class TimeController {
     private TimeService timeService;
 
     @PostMapping(path = "/cadastrar")
-    public TimeDto cadastrar(@RequestBody TimeDto timeDto) {
+    public Long cadastrar(@RequestBody TimeDto timeDto) {
         return timeService.cadastrar(timeDto);
     }
 

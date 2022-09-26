@@ -9,5 +9,5 @@ import lombok.*;
 @Builder
 public class QuadroDto {
 
-    private TimeDto time;
+    private Long time;
 }

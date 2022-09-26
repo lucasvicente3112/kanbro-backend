@@ -37,8 +37,8 @@ public class UsuarioService {
         return usuarioMapper.paraListaDeUsuariosDto(usuarioRepository.findAll());
     }
 
-    public Optional<UsuarioDto> recuperaTime(String email) {
-       return usuarioMapper.paraDtoOptional(usuarioRepository.findByEmail(email));
+    public UsuarioDto recuperaTime(String email) {
+        return usuarioMapper.paraDtoOptional(usuarioRepository.findByEmail(email));
     }
 
     public UsuarioDto cadastrar(UsuarioDto usuarioDto) {

@@ -19,18 +19,12 @@ public class UsuarioMapper {
                 .build();
     }
 
-    public Optional<UsuarioDto> paraDtoOptional(Optional<Usuario> usuario) {
-        Optional<UsuarioDto> usuarioDto = null;
-        try {
-            usuarioDto = Optional.ofNullable(UsuarioDto.builder()
-                    .nome(usuario.get().getNome())
-                    .email(usuario.get().getEmail())
-                    .senha(usuario.get().getSenha())
-                    .build());
-        } catch (NoSuchElementException e) {
-            return null;
-        }
-        return usuarioDto;
+    public UsuarioDto paraDtoOptional(Optional<Usuario> usuario) {
+        return usuario.map(usuarioRetorno -> UsuarioDto.builder()
+                .nome(usuarioRetorno.getNome())
+                .email(usuarioRetorno.getEmail())
+                .senha(usuarioRetorno.getSenha())
+                .build()).orElse(null);
     }
 
     public Usuario dtoParaUsuario(UsuarioDto usuarioDto) {

@@ -14,7 +14,7 @@ public class QuadroController {
     private QuadroService quadroService;
 
     @PostMapping(path = "/cadastrar")
-    public QuadroDto cadastrar(@RequestBody QuadroDto quadroDto) {
+    public Long cadastrar(@RequestBody QuadroDto quadroDto) {
         return quadroService.cadastrar(quadroDto);
     }
 }

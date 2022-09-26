@@ -13,15 +13,15 @@ public class QuadroMapper {
     private TimeMapper timeMapper;
     public QuadroDto paraDto(Quadro quadro){
         return QuadroDto.builder()
-                .time(timeMapper.paraDto(quadro.getTime()))
+                .time(quadro.getTime().getIdTime())
                 .build();
     }
 
-    public Quadro dtoParaQuadro(QuadroDto quadroDto){
-        return Quadro.builder()
-                .time(timeMapper.dtoParaTimes(quadroDto.getTime()))
-                .build();
-    }
+//    public Quadro dtoParaQuadro(QuadroDto quadroDto){
+//        return Quadro.builder()
+//                .time(quadroDto.getTime())
+//                .build();
+//    }
     public List<QuadroDto> paraListaDeQuadroDto(List<Quadro> quadroList){
         return quadroList.stream().map(this::paraDto).collect(Collectors.toList());
     }

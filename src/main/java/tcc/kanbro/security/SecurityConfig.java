@@ -31,6 +31,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .antMatchers("/usuario", "/usuario/**").permitAll()
                 .antMatchers("/time", "/time/**").permitAll()
+                .antMatchers("/quadro", "/quadro/**").permitAll()
                 .antMatchers("/usuario/login", "/usuario/login/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()

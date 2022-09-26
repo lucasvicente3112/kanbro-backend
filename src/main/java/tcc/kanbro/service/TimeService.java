@@ -28,7 +28,7 @@ public class TimeService {
         return timeMapper.paraListaDeTime(timeRepository.findAll());
     }
     @Transactional
-    public TimeDto cadastrar(TimeDto timeDto) {
+    public Long cadastrar(TimeDto timeDto) {
         List<Usuario> usuarioList = new ArrayList<>();
         Optional<Usuario> usuarioResgatado = usuarioRepository.findByEmail(timeDto.getUsuarios().get(0).getEmail());
         usuarioList.add(usuarioRepository.findAByNome(usuarioResgatado.get().getNome()));
@@ -39,6 +39,6 @@ public class TimeService {
                                             .build());
 
         usuarioRepository.atualizaTimeDoUsuario(usuarioResgatado.get().getIdUsuario(), timeNovo);
-        return timeDto;
+        return timeNovo.getIdTime();
     }
 }
