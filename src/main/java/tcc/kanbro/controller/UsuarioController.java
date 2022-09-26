@@ -26,6 +26,7 @@ public class UsuarioController {
     public UsuarioDto retornaTime(@PathVariable String email){
         return usuarioService.recuperaTime(email);
     }
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody UsuarioDto usuarioDto) {
         return usuarioService.login(usuarioDto);
