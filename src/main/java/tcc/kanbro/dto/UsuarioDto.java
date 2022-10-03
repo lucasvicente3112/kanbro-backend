@@ -19,4 +19,7 @@ public class UsuarioDto {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String token;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private Long idTime;
 }

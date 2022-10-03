@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import tcc.kanbro.dto.UsuarioDto;
 import tcc.kanbro.service.UsuarioService;
 
-import java.util.Optional;
-
 @RestController
 @CrossOrigin
 @RequestMapping(value = "/usuario")

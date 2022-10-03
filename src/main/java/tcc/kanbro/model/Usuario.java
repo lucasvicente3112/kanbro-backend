@@ -21,6 +21,7 @@ public class Usuario implements UserDetails {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "time")
+    @ToString.Exclude
     private Time time;
 
     private String nome;

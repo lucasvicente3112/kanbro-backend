@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import tcc.kanbro.dto.UsuarioDto;
 import tcc.kanbro.mapper.UsuarioMapper;
+import tcc.kanbro.model.Time;
 import tcc.kanbro.model.Usuario;
 import tcc.kanbro.repository.UsuarioRepository;
 import tcc.kanbro.security.JwtTokenUtil;
@@ -38,7 +39,10 @@ public class UsuarioService {
     }
 
     public UsuarioDto recuperaTime(String email) {
-        return usuarioMapper.paraDtoOptional(usuarioRepository.findByEmail(email));
+        UsuarioDto usuarioDto = usuarioMapper.paraDtoOptional(usuarioRepository.findByEmail(email));
+        usuarioDto.setIdTime(usuarioRepository.retornaIdTimePorEmail(email).getIdTime());
+
+        return usuarioDto;
     }
 
     public UsuarioDto cadastrar(UsuarioDto usuarioDto) {
