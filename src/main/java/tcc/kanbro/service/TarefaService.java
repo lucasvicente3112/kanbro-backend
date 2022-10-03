@@ -57,12 +57,12 @@ public class TarefaService {
     }
 
     private Quadro encontraQuadroDoTimePorTarefa(TarefaDto tarefaDto) {
-        Time time = timeRepository.findAByNome(tarefaDto.getQuadro().getTime().getNome());
+        Time time = timeRepository.findByIdTime(tarefaDto.getQuadro().getTime());
         return quadroRepository.findByTime(time);
     }
 
-    private Quadro encontraQuadroPorTime(TimeDto timeDto) {
-        Time time = timeRepository.findAByNome(timeDto.getNome());
+    private Quadro encontraQuadroPorTime(Long idTime) {
+        Time time = timeRepository.findByIdTime(idTime);
         return quadroRepository.findByTime(time);
     }
 }

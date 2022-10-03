@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "TIME")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -19,7 +19,7 @@ public class Time {
 
     private String nome;
 
-    @OneToMany
+    @OneToMany(mappedBy = "idUsuario", fetch = FetchType.LAZY)
     private List<Usuario> usuarios;
 
     @OneToOne

@@ -8,14 +8,15 @@ import tcc.kanbro.service.TimeService;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/times")
-public class TimesController {
+@CrossOrigin
+@RequestMapping(value = "/time")
+public class TimeController {
 
     @Autowired
     private TimeService timeService;
 
     @PostMapping(path = "/cadastrar")
-    public TimeDto cadastrar(@RequestBody TimeDto timeDto) {
+    public Long cadastrar(@RequestBody TimeDto timeDto) {
         return timeService.cadastrar(timeDto);
     }
 

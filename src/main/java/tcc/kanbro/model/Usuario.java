@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 
-@Entity
+@Entity(name = "USUARIO")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -19,7 +19,8 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "time")
     private Time time;
 
     private String nome;

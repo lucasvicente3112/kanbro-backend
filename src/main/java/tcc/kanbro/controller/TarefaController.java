@@ -9,8 +9,9 @@ import tcc.kanbro.service.TarefaService;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/tarefas")
-public class TarefasController {
+@CrossOrigin
+@RequestMapping(value = "/tarefa")
+public class TarefaController {
 
     @Autowired
     private TarefaService tarefaService;
