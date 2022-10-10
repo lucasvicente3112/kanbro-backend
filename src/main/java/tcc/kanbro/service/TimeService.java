@@ -41,4 +41,11 @@ public class TimeService {
         usuarioRepository.atualizaTimeDoUsuario(usuarioResgatado.get().getIdUsuario(), timeNovo);
         return timeNovo.getIdTime();
     }
+    @Transactional
+    public void adicionaUsuario(Long id, String email){
+      Time time = timeRepository.findByIdTime(id);
+      Optional<Usuario> usuarioResgatado = usuarioRepository.findByEmail(email);
+
+        usuarioRepository.atualizaTimeDoUsuario(usuarioResgatado.get().getIdUsuario(), time);
+    }
 }

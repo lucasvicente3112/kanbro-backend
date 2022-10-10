@@ -7,6 +7,7 @@ import tcc.kanbro.model.Time;
 import tcc.kanbro.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
@@ -21,4 +22,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Query("SELECT u.time FROM USUARIO u WHERE u.email = :EMAIL")
     Time retornaIdTimePorEmail(@Param("EMAIL") String email);
 
+    @Query("SELECT u FROM USUARIO u WHERE u.time = :ID_TIME")
+    List<Usuario> retornaUsuariosPorTime(@Param("ID_TIME") Time idTime);
 }

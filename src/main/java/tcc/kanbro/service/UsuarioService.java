@@ -13,18 +13,19 @@ import tcc.kanbro.dto.UsuarioDto;
 import tcc.kanbro.mapper.UsuarioMapper;
 import tcc.kanbro.model.Time;
 import tcc.kanbro.model.Usuario;
+import tcc.kanbro.repository.TimeRepository;
 import tcc.kanbro.repository.UsuarioRepository;
 import tcc.kanbro.security.JwtTokenUtil;
 
 import java.util.List;
-import java.util.Optional;
-
 
 @Service
 public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private TimeRepository timeRepository;
     @Autowired
     private UsuarioMapper usuarioMapper;
     @Autowired
@@ -54,21 +55,20 @@ public class UsuarioService {
 
     public ResponseEntity<?> login(UsuarioDto usuarioDto) {
         try {
-            Authentication authentication = authManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            usuarioDto.getEmail(), usuarioDto.getSenha())
-            );
+            Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken(usuarioDto.getEmail(), usuarioDto.getSenha()));
 
             Usuario usuario = (Usuario) authentication.getPrincipal();
             String accessToken = jwtUtil.generateAccessToken(usuario);
-            UsuarioDto usuarioDtoResponse = UsuarioDto.builder()
-                    .email(usuario.getEmail())
-                    .token(accessToken)
-                    .build();
+            UsuarioDto usuarioDtoResponse = UsuarioDto.builder().email(usuario.getEmail()).token(accessToken).build();
             return ResponseEntity.ok().body(usuarioDtoResponse);
 
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
+    }
+
+    public List<UsuarioDto> listarUsuariosDoTime(Long idTime) {
+        Time timeRecuperado = timeRepository.findByIdTime(idTime);
+        return usuarioMapper.paraListaDeUsuariosDto(usuarioRepository.retornaUsuariosPorTime(timeRecuperado));
     }
 }

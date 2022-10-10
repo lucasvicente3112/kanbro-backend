@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import tcc.kanbro.dto.UsuarioDto;
 import tcc.kanbro.service.UsuarioService;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 @RequestMapping(value = "/usuario")
@@ -27,5 +29,10 @@ public class UsuarioController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody UsuarioDto usuarioDto) {
         return usuarioService.login(usuarioDto);
+    }
+
+    @GetMapping(path = "/time/{idTime}")
+    public List<UsuarioDto> usuariosDoTime(@PathVariable Long idTime){
+        return usuarioService.listarUsuariosDoTime(idTime);
     }
 }

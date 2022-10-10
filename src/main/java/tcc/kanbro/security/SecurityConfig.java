@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .antMatchers("/usuario/login", "/usuario/login/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
-                .and().csrf().disable();
+                .and().cors().and().csrf().disable();
         httpSecurity.cors().disable();
         httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         httpSecurity.headers().frameOptions().disable();

@@ -20,6 +20,10 @@ public class TimeController {
         return timeService.cadastrar(timeDto);
     }
 
+    @PostMapping(path ="/{id}/adicionar/{email}")
+    public void adicionaUsuario(@PathVariable Long id, @PathVariable String email){
+        timeService.adicionaUsuario(id, email);
+    };
     @GetMapping
     public List<TimeDto> retornarTodos() {
         return timeService.listarTimes();
