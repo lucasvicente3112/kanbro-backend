@@ -24,6 +24,12 @@ public class TimeController {
     public void adicionaUsuario(@PathVariable Long id, @PathVariable String email){
         timeService.adicionaUsuario(id, email);
     };
+
+    @PostMapping(path ="/remover/{email}")
+    public void removeUsuario(@PathVariable String email){
+        timeService.removeUsuario(email);
+    };
+
     @GetMapping
     public List<TimeDto> retornarTodos() {
         return timeService.listarTimes();

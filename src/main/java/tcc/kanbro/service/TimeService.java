@@ -48,4 +48,11 @@ public class TimeService {
 
         usuarioRepository.atualizaTimeDoUsuario(usuarioResgatado.get().getIdUsuario(), time);
     }
+
+    @Transactional
+    public void removeUsuario(String email){
+        Optional<Usuario> usuarioResgatado = usuarioRepository.findByEmail(email);
+
+        usuarioRepository.removeUsuarioDoTime(usuarioResgatado.get().getIdUsuario());
+    }
 }

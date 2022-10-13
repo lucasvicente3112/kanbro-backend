@@ -19,6 +19,10 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Query("UPDATE USUARIO u SET u.time = :ID_TIME WHERE u.idUsuario = :ID_USUARIO")
     void atualizaTimeDoUsuario(@Param("ID_USUARIO") Long idUsuario, @Param("ID_TIME") Time idTime);
 
+    @Modifying
+    @Query("UPDATE USUARIO u SET u.time = null WHERE u.idUsuario = :ID_USUARIO")
+    void removeUsuarioDoTime(@Param("ID_USUARIO") Long idUsuario);
+
     @Query("SELECT u.time FROM USUARIO u WHERE u.email = :EMAIL")
     Time retornaIdTimePorEmail(@Param("EMAIL") String email);
 
