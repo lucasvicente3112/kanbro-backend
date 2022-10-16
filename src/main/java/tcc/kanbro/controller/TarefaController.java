@@ -2,7 +2,6 @@ package tcc.kanbro.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import tcc.kanbro.dto.QuadroDto;
 import tcc.kanbro.dto.TarefaDto;
 import tcc.kanbro.service.TarefaService;
 
@@ -21,8 +20,14 @@ public class TarefaController {
         return tarefaService.cadastrar(tarefaDto);
     }
 
-    @GetMapping
-    public List<TarefaDto> listarTarefasPorQuadro(@RequestBody QuadroDto quadroDto){
-        return tarefaService.listarTarefasPorQuadro(quadroDto);
+    @GetMapping(path = "/quadro/{idQuadro}")
+    public List<TarefaDto> listarTarefasPorQuadro(@PathVariable Long idQuadro){
+        return tarefaService.listarTarefasPorQuadro(idQuadro);
     }
+
+    @PostMapping(path = "/{idTarefa}/quadro/{idQuadro}/atualiza-status/{status}")
+    public void atualizarStatus(@PathVariable Long idTarefa, @PathVariable Long idQuadro, @PathVariable String status) {
+        tarefaService.atualizarStatus(idTarefa, idQuadro, status);
+    }
+
 }

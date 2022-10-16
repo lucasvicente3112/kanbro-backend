@@ -37,11 +37,13 @@ public class SecurityConfig {
                 .antMatchers("/time", "/time/**").permitAll()
                 .antMatchers("/time/remover", "/time/remover/**").permitAll()
                 .antMatchers("/quadro", "/quadro/**").permitAll()
+                .antMatchers("/tarefa", "/tarefa/**").permitAll()
+                .antMatchers("/tarefa/quadro", "/tarefa/quadro/**").permitAll()
                 .antMatchers("/usuario/login", "/usuario/login/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
 //                .anyRequest().authenticated()
                 .and().csrf().disable();
-        httpSecurity.cors();
+//        httpSecurity.cors();
         httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         httpSecurity.headers().frameOptions().disable();
         httpSecurity.exceptionHandling()
@@ -64,7 +66,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000/"));
+        configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
         configuration.setExposedHeaders(Arrays.asList("x-auth-token"));

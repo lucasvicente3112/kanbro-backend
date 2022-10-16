@@ -7,4 +7,5 @@ import tcc.kanbro.model.Time;
 public interface QuadroRepository extends JpaRepository<Quadro, Integer> {
 
     Quadro findByTime(Time time);
+    Quadro findByIdQuadro(Long id);
 }

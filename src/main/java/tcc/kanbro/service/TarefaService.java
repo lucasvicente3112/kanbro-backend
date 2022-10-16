@@ -2,6 +2,7 @@ package tcc.kanbro.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tcc.kanbro.dto.QuadroDto;
 import tcc.kanbro.dto.TarefaDto;
 import tcc.kanbro.dto.TimeDto;
@@ -16,6 +17,7 @@ import tcc.kanbro.repository.TarefaRepository;
 import tcc.kanbro.repository.TimeRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TarefaService {
@@ -37,8 +39,8 @@ public class TarefaService {
         return tarefaMapper.paraListaDeTarefasDto(tarefaRepository.findAll());
     }
 
-    public List<TarefaDto> listarTarefasPorQuadro(QuadroDto quadroDto) {
-        return tarefaMapper.paraListaDeTarefasDto(tarefaRepository.findAllByQuadro(encontraQuadroPorTime(quadroDto.getTime())));
+    public List<TarefaDto> listarTarefasPorQuadro(Long idTime) {
+        return tarefaMapper.paraListaDeTarefasDto(tarefaRepository.findAllByQuadro(encontraQuadroPorTime(idTime)));
     }
 
     public TarefaDto cadastrar(TarefaDto tarefaDto) {
@@ -46,8 +48,10 @@ public class TarefaService {
         Quadro quadro = encontraQuadroDoTimePorTarefa(tarefaDto);
 
         Tarefa tarefa = Tarefa.builder()
+                .titulo(tarefaDto.getTitulo())
                 .descricao(tarefaDto.getDescricao())
                 .responsavel(tarefaDto.getResponsavel())
+                .status(tarefaDto.getStatus())
                 .quadro(quadro)
                 .build();
 
@@ -64,5 +68,10 @@ public class TarefaService {
     private Quadro encontraQuadroPorTime(Long idTime) {
         Time time = timeRepository.findByIdTime(idTime);
         return quadroRepository.findByTime(time);
+    }
+    @Transactional
+    public void atualizarStatus(Long idTarefa, Long idQuadro, String status) {
+        Quadro quadro = quadroRepository.findByIdQuadro(idQuadro);
+        tarefaRepository.atualizaStatus(idTarefa, quadro, status);
     }
 }

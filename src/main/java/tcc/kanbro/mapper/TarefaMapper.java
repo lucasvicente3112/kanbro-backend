@@ -15,16 +15,21 @@ public class TarefaMapper {
 
     public TarefaDto paraDto(Tarefa tarefa) {
         return TarefaDto.builder()
+                .idTarefa(tarefa.getIdTarefa())
+                .titulo(tarefa.getTitulo())
                 .descricao(tarefa.getDescricao())
                 .responsavel(tarefa.getResponsavel())
+                .status(tarefa.getStatus())
 //                .quadro(quadroMapper.paraDto(tarefa.getQuadro()))
                 .build();
     }
 
     public Tarefa dtoParaTarefa(TarefaDto tarefaDto) {
         return Tarefa.builder()
+                .titulo(tarefaDto.getTitulo())
                 .descricao(tarefaDto.getDescricao())
                 .responsavel(tarefaDto.getResponsavel())
+                .status(tarefaDto.getStatus())
 //                .quadro(quadroMapper.dtoParaQuadro(tarefaDto.getQuadro()))
                 .build();
     }
