@@ -2,21 +2,21 @@ package tcc.kanbro.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
 @Builder
-public class Mensagem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idMensagem;
-    private String mensagem;
+public class Mensagem extends ModeloBaseMensagem{
+
+    @Enumerated(EnumType.STRING)
+    private TipoMensagem tipoMensagem;
+
+    private String conteudo;
+    private String sala;
+
+    private String usuario;
 }
