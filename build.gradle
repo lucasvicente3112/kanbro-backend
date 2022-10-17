@@ -30,7 +30,7 @@ dependencies {
 	implementation "org.springframework.boot:spring-boot-starter-security"
 
 	// https://mvnrepository.com/artifact/com.corundumstudio.socketio/netty-socketio
-	implementation 'com.corundumstudio.socketio:netty-socketio:1.7.20'
+	implementation 'com.corundumstudio.socketio:netty-socketio:1.7.17'
 
 }
 
