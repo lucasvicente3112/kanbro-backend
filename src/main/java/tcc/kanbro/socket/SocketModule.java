@@ -44,7 +44,7 @@ public class SocketModule {
             String sala = params.get("sala").stream().collect(Collectors.joining());
             String usuario = params.get("usuario").stream().collect(Collectors.joining());
             client.joinRoom(sala);
-            socketService.saveInfoMessage(client, String.format(Constants.WELCOME_MESSAGE, usuario), sala);
+            socketService.saveInfoMessage(client, String.format(Constants.MENSAGEM_ENTRADA, usuario), sala);
             log.info("Socket ID[{}] - sala[{}] - usuario [{}]  Connected to chat module through", client.getSessionId().toString(), sala, usuario);
         };
 
@@ -55,7 +55,7 @@ public class SocketModule {
             var params = client.getHandshakeData().getUrlParams();
             String sala = params.get("sala").stream().collect(Collectors.joining());
             String usuario = params.get("usuario").stream().collect(Collectors.joining());
-            socketService.saveInfoMessage(client, String.format(Constants.DISCONNECT_MESSAGE, usuario), sala);
+            socketService.saveInfoMessage(client, String.format(Constants.MENSAGEM_SAIDA, usuario), sala);
             log.info("Socket ID[{}] - sala[{}] - usuario [{}]  discnnected to chat module through", client.getSessionId().toString(), sala, usuario);
         };
     }

@@ -17,11 +17,6 @@ public class QuadroMapper {
                 .build();
     }
 
-//    public Quadro dtoParaQuadro(QuadroDto quadroDto){
-//        return Quadro.builder()
-//                .time(quadroDto.getTime())
-//                .build();
-//    }
     public List<QuadroDto> paraListaDeQuadroDto(List<Quadro> quadroList){
         return quadroList.stream().map(this::paraDto).collect(Collectors.toList());
     }
