@@ -39,6 +39,8 @@ public class SecurityConfig {
                 .antMatchers("/quadro", "/quadro/**").permitAll()
                 .antMatchers("/tarefa", "/tarefa/**").permitAll()
                 .antMatchers("/tarefa/quadro", "/tarefa/quadro/**").permitAll()
+                .antMatchers("/mensagem", "/mensagem/**").permitAll()
+                .antMatchers("/socket.io", "/socket.io/**").permitAll()
                 .antMatchers("/usuario/login", "/usuario/login/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
 //                .anyRequest().authenticated()

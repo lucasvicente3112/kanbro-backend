@@ -59,7 +59,7 @@ public class UsuarioService {
 
             Usuario usuario = (Usuario) authentication.getPrincipal();
             String accessToken = jwtUtil.generateAccessToken(usuario);
-            UsuarioDto usuarioDtoResponse = UsuarioDto.builder().email(usuario.getEmail()).token(accessToken).build();
+            UsuarioDto usuarioDtoResponse = UsuarioDto.builder().email(usuario.getEmail()).nome(usuario.getNome()).token(accessToken).build();
             return ResponseEntity.ok().body(usuarioDtoResponse);
 
         } catch (BadCredentialsException ex) {

@@ -1,20 +1,25 @@
 package tcc.kanbro.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tcc.kanbro.dto.MensagemDto;
+import tcc.kanbro.model.Mensagem;
 import tcc.kanbro.service.MensagemService;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
+@RequiredArgsConstructor
 @RequestMapping(value = "/mensagem")
 public class MensagemController {
 
     @Autowired
     private MensagemService mensagemService;
 
-    @PostMapping(path = "/cadastrar")
-    public MensagemDto cadastrar(@RequestBody MensagemDto mensagemDto) {
-        return mensagemService.cadastrar(mensagemDto);
+    @GetMapping("/{sala}")
+    public ResponseEntity<List<Mensagem>> getMessages(@PathVariable String sala) {
+        return ResponseEntity.ok(mensagemService.getMensagens(sala));
     }
 }

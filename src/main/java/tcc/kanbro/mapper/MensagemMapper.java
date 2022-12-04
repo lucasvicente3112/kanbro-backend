@@ -11,13 +11,13 @@ public class MensagemMapper {
 
     public MensagemDto paraDto(Mensagem mensagem){
         return MensagemDto.builder()
-                .mensagem(mensagem.getMensagem())
+                .mensagem(mensagem.getConteudo())
                 .build();
     }
 
     public Mensagem dtoParaMensagem(MensagemDto mensagemDto){
         return Mensagem.builder()
-                .mensagem(mensagemDto.getMensagem())
+                .conteudo(mensagemDto.getMensagem())
                 .build();
     }
     public List<MensagemDto> paraListaDeMensagemDto(List<Mensagem> mensagemList){

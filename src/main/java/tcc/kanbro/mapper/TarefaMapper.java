@@ -20,7 +20,6 @@ public class TarefaMapper {
                 .descricao(tarefa.getDescricao())
                 .responsavel(tarefa.getResponsavel())
                 .status(tarefa.getStatus())
-//                .quadro(quadroMapper.paraDto(tarefa.getQuadro()))
                 .build();
     }
 
@@ -30,7 +29,6 @@ public class TarefaMapper {
                 .descricao(tarefaDto.getDescricao())
                 .responsavel(tarefaDto.getResponsavel())
                 .status(tarefaDto.getStatus())
-//                .quadro(quadroMapper.dtoParaQuadro(tarefaDto.getQuadro()))
                 .build();
     }
 
